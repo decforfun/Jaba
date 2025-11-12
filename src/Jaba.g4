@@ -48,7 +48,6 @@ saida
     : ESCREVA '(' expressao ')' ';'
     ;
 
-// Expressões com precedência correta
 expressao
     : expressaoLogica
     ;
@@ -92,12 +91,12 @@ WHILE   : 'enquanto' ;
 LEIA    : 'leia' ;
 ESCREVA : 'escreva' ;
 
-// Literais e identificadores
+// literais e identificadores
 NUMERO  : [0-9]+ ('.' [0-9]+)? ;
 BOOL_LITERAL : 'verdadeiro' | 'falso' ;
 ID      : [a-zA-Z_] [a-zA-Z_0-9]* ;
 
-// Símbolos
+// símbolos
 SEMI    : ';' ;
 ASSIGN  : '=' ;
 LPAREN  : '(' ;
@@ -105,12 +104,12 @@ RPAREN  : ')' ;
 LBRACE  : '{' ;
 RBRACE  : '}' ;
 
-// Descartar espaços em branco, tabs, comentários
+// parte responsavel por limpar as entradas
 WS : [ \t\r\n]+ -> skip ;
 LINE_COMMENT : '//' ~[\r\n]* -> skip ;
 BLOCK_COMMENT : '/*' .*? '*/' -> skip ;
 
-// Operadores relacionais
+// operadores relacionais
 MAIOR       : '>' ;
 MENOR       : '<' ;
 IGUAL       : '==' ;
@@ -118,6 +117,6 @@ DIFERENTE   : '!=' ;
 MAIORIGUAL  : '>=' ;
 MENORIGUAL  : '<=' ;
 
-// Operadores lógicos
+// operadores lógicos
 E_LOGICO    : '&&' ;
 OU_LOGICO   : '||' ;
