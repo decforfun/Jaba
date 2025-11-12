@@ -50,9 +50,23 @@ saida
 
 // Expressões com precedência correta
 expressao
-    : expressao ('+'|'-') termo
-    | termo
+    : expressaoLogica
     ;
+
+expressaoLogica
+    : expressaoRelacional (E_LOGICO | OU_LOGICO) expressaoRelacional*
+    | expressaoRelacional
+    ;
+
+    expressaoRelacional
+        : expressaoAritmetica (MAIOR | MENOR | IGUAL | DIFERENTE | MAIORIGUAL | MENORIGUAL) expressaoAritmetica
+        | expressaoAritmetica
+        ;
+
+    expressaoAritmetica
+        : expressaoAritmetica ('+'|'-') termo
+        | termo
+        ;
 
 termo
     : termo ('*'|'/') fator
@@ -66,7 +80,7 @@ fator
     | ID
     ;
 
-// ---------- Lexer rules (MAIÚSCULAS) ----------
+// ---------- Lexer rules ----------
 INT     : 'inteiro' ;
 REAL    : 'real' ;
 BOOL    : 'booleano' ;
@@ -95,3 +109,15 @@ RBRACE  : '}' ;
 WS : [ \t\r\n]+ -> skip ;
 LINE_COMMENT : '//' ~[\r\n]* -> skip ;
 BLOCK_COMMENT : '/*' .*? '*/' -> skip ;
+
+// Operadores relacionais
+MAIOR       : '>' ;
+MENOR       : '<' ;
+IGUAL       : '==' ;
+DIFERENTE   : '!=' ;
+MAIORIGUAL  : '>=' ;
+MENORIGUAL  : '<=' ;
+
+// Operadores lógicos
+E_LOGICO    : '&&' ;
+OU_LOGICO   : '||' ;
