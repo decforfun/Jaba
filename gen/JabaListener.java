@@ -1,4 +1,7 @@
 // Generated from /home/andre/IdeaProjects/Jaba/src/Jaba.g4 by ANTLR 4.13.2
+
+    package jaba;
+
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -130,6 +133,36 @@ public interface JabaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpressao(JabaParser.ExpressaoContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JabaParser#expressaoLogica}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressaoLogica(JabaParser.ExpressaoLogicaContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JabaParser#expressaoLogica}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressaoLogica(JabaParser.ExpressaoLogicaContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JabaParser#expressaoRelacional}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressaoRelacional(JabaParser.ExpressaoRelacionalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JabaParser#expressaoRelacional}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressaoRelacional(JabaParser.ExpressaoRelacionalContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JabaParser#expressaoAritmetica}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressaoAritmetica(JabaParser.ExpressaoAritmeticaContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JabaParser#expressaoAritmetica}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressaoAritmetica(JabaParser.ExpressaoAritmeticaContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link JabaParser#termo}.
 	 * @param ctx the parse tree

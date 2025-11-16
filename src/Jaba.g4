@@ -1,5 +1,10 @@
 grammar Jaba;
 
+@header {
+    package jaba;
+}
+
+
 // ---------- Parser rules  ----------
 programa
     : (declaracao | comando)* EOF

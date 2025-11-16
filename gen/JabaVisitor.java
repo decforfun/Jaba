@@ -1,4 +1,7 @@
 // Generated from /home/andre/IdeaProjects/Jaba/src/Jaba.g4 by ANTLR 4.13.2
+
+    package jaba;
+
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -83,6 +86,24 @@ public interface JabaVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitExpressao(JabaParser.ExpressaoContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JabaParser#expressaoLogica}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressaoLogica(JabaParser.ExpressaoLogicaContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JabaParser#expressaoRelacional}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressaoRelacional(JabaParser.ExpressaoRelacionalContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JabaParser#expressaoAritmetica}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressaoAritmetica(JabaParser.ExpressaoAritmeticaContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link JabaParser#termo}.
 	 * @param ctx the parse tree

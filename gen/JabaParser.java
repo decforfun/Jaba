@@ -1,4 +1,7 @@
 // Generated from /home/andre/IdeaProjects/Jaba/src/Jaba.g4 by ANTLR 4.13.2
+
+    package jaba;
+
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -18,16 +21,20 @@ public class JabaParser extends Parser {
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, INT=5, REAL=6, BOOL=7, IF=8, ELSE=9, WHILE=10, 
 		LEIA=11, ESCREVA=12, NUMERO=13, BOOL_LITERAL=14, ID=15, SEMI=16, ASSIGN=17, 
-		LPAREN=18, RPAREN=19, LBRACE=20, RBRACE=21, WS=22, LINE_COMMENT=23, BLOCK_COMMENT=24;
+		LPAREN=18, RPAREN=19, LBRACE=20, RBRACE=21, WS=22, LINE_COMMENT=23, BLOCK_COMMENT=24, 
+		MAIOR=25, MENOR=26, IGUAL=27, DIFERENTE=28, MAIORIGUAL=29, MENORIGUAL=30, 
+		E_LOGICO=31, OU_LOGICO=32;
 	public static final int
 		RULE_programa = 0, RULE_declaracao = 1, RULE_comando = 2, RULE_tipo = 3, 
 		RULE_atribuicao = 4, RULE_condicional = 5, RULE_repeticao = 6, RULE_bloco = 7, 
-		RULE_entrada = 8, RULE_saida = 9, RULE_expressao = 10, RULE_termo = 11, 
-		RULE_fator = 12;
+		RULE_entrada = 8, RULE_saida = 9, RULE_expressao = 10, RULE_expressaoLogica = 11, 
+		RULE_expressaoRelacional = 12, RULE_expressaoAritmetica = 13, RULE_termo = 14, 
+		RULE_fator = 15;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"programa", "declaracao", "comando", "tipo", "atribuicao", "condicional", 
-			"repeticao", "bloco", "entrada", "saida", "expressao", "termo", "fator"
+			"repeticao", "bloco", "entrada", "saida", "expressao", "expressaoLogica", 
+			"expressaoRelacional", "expressaoAritmetica", "termo", "fator"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -36,7 +43,8 @@ public class JabaParser extends Parser {
 		return new String[] {
 			null, "'+'", "'-'", "'*'", "'/'", "'inteiro'", "'real'", "'booleano'", 
 			"'se'", "'senao'", "'enquanto'", "'leia'", "'escreva'", null, null, null, 
-			"';'", "'='", "'('", "')'", "'{'", "'}'"
+			"';'", "'='", "'('", "')'", "'{'", "'}'", null, null, null, "'>'", "'<'", 
+			"'=='", "'!='", "'>='", "'<='", "'&&'", "'||'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -44,7 +52,9 @@ public class JabaParser extends Parser {
 		return new String[] {
 			null, null, null, null, null, "INT", "REAL", "BOOL", "IF", "ELSE", "WHILE", 
 			"LEIA", "ESCREVA", "NUMERO", "BOOL_LITERAL", "ID", "SEMI", "ASSIGN", 
-			"LPAREN", "RPAREN", "LBRACE", "RBRACE", "WS", "LINE_COMMENT", "BLOCK_COMMENT"
+			"LPAREN", "RPAREN", "LBRACE", "RBRACE", "WS", "LINE_COMMENT", "BLOCK_COMMENT", 
+			"MAIOR", "MENOR", "IGUAL", "DIFERENTE", "MAIORIGUAL", "MENORIGUAL", "E_LOGICO", 
+			"OU_LOGICO"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -139,19 +149,19 @@ public class JabaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(30);
+			setState(36);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 40416L) != 0)) {
 				{
-				setState(28);
+				setState(34);
 				_errHandler.sync(this);
 				switch (_input.LA(1)) {
 				case INT:
 				case REAL:
 				case BOOL:
 					{
-					setState(26);
+					setState(32);
 					declaracao();
 					}
 					break;
@@ -161,7 +171,7 @@ public class JabaParser extends Parser {
 				case ESCREVA:
 				case ID:
 					{
-					setState(27);
+					setState(33);
 					comando();
 					}
 					break;
@@ -169,11 +179,11 @@ public class JabaParser extends Parser {
 					throw new NoViableAltException(this);
 				}
 				}
-				setState(32);
+				setState(38);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(33);
+			setState(39);
 			match(EOF);
 			}
 		}
@@ -253,18 +263,18 @@ public class JabaParser extends Parser {
 		DeclaracaoContext _localctx = new DeclaracaoContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_declaracao);
 		try {
-			setState(45);
+			setState(51);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 			case 1:
 				_localctx = new DeclaracaoSimplesContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(35);
+				setState(41);
 				tipo();
-				setState(36);
+				setState(42);
 				match(ID);
-				setState(37);
+				setState(43);
 				match(SEMI);
 				}
 				break;
@@ -272,15 +282,15 @@ public class JabaParser extends Parser {
 				_localctx = new DeclaracaoComInicializacaoContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(39);
+				setState(45);
 				tipo();
-				setState(40);
+				setState(46);
 				match(ID);
-				setState(41);
+				setState(47);
 				match(ASSIGN);
-				setState(42);
-				expressao(0);
-				setState(43);
+				setState(48);
+				expressao();
+				setState(49);
 				match(SEMI);
 				}
 				break;
@@ -337,41 +347,41 @@ public class JabaParser extends Parser {
 		ComandoContext _localctx = new ComandoContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_comando);
 		try {
-			setState(52);
+			setState(58);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(47);
+				setState(53);
 				atribuicao();
 				}
 				break;
 			case IF:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(48);
+				setState(54);
 				condicional();
 				}
 				break;
 			case WHILE:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(49);
+				setState(55);
 				repeticao();
 				}
 				break;
 			case LEIA:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(50);
+				setState(56);
 				entrada();
 				}
 				break;
 			case ESCREVA:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(51);
+				setState(57);
 				saida();
 				}
 				break;
@@ -421,7 +431,7 @@ public class JabaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(54);
+			setState(60);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 224L) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -477,13 +487,13 @@ public class JabaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(56);
+			setState(62);
 			match(ID);
-			setState(57);
+			setState(63);
 			match(ASSIGN);
-			setState(58);
-			expressao(0);
-			setState(59);
+			setState(64);
+			expressao();
+			setState(65);
 			match(SEMI);
 			}
 		}
@@ -539,24 +549,24 @@ public class JabaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(61);
+			setState(67);
 			match(IF);
-			setState(62);
-			match(LPAREN);
-			setState(63);
-			expressao(0);
-			setState(64);
-			match(RPAREN);
-			setState(65);
-			bloco();
 			setState(68);
+			match(LPAREN);
+			setState(69);
+			expressao();
+			setState(70);
+			match(RPAREN);
+			setState(71);
+			bloco();
+			setState(74);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==ELSE) {
 				{
-				setState(66);
+				setState(72);
 				match(ELSE);
-				setState(67);
+				setState(73);
 				bloco();
 				}
 			}
@@ -610,15 +620,15 @@ public class JabaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(70);
+			setState(76);
 			match(WHILE);
-			setState(71);
+			setState(77);
 			match(LPAREN);
-			setState(72);
-			expressao(0);
-			setState(73);
+			setState(78);
+			expressao();
+			setState(79);
 			match(RPAREN);
-			setState(74);
+			setState(80);
 			bloco();
 			}
 		}
@@ -675,21 +685,21 @@ public class JabaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(76);
+			setState(82);
 			match(LBRACE);
-			setState(81);
+			setState(87);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 40416L) != 0)) {
 				{
-				setState(79);
+				setState(85);
 				_errHandler.sync(this);
 				switch (_input.LA(1)) {
 				case INT:
 				case REAL:
 				case BOOL:
 					{
-					setState(77);
+					setState(83);
 					declaracao();
 					}
 					break;
@@ -699,7 +709,7 @@ public class JabaParser extends Parser {
 				case ESCREVA:
 				case ID:
 					{
-					setState(78);
+					setState(84);
 					comando();
 					}
 					break;
@@ -707,11 +717,11 @@ public class JabaParser extends Parser {
 					throw new NoViableAltException(this);
 				}
 				}
-				setState(83);
+				setState(89);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(84);
+			setState(90);
 			match(RBRACE);
 			}
 		}
@@ -758,15 +768,15 @@ public class JabaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(86);
+			setState(92);
 			match(LEIA);
-			setState(87);
+			setState(93);
 			match(LPAREN);
-			setState(88);
+			setState(94);
 			match(ID);
-			setState(89);
+			setState(95);
 			match(RPAREN);
-			setState(90);
+			setState(96);
 			match(SEMI);
 			}
 		}
@@ -815,15 +825,15 @@ public class JabaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(92);
+			setState(98);
 			match(ESCREVA);
-			setState(93);
+			setState(99);
 			match(LPAREN);
-			setState(94);
-			expressao(0);
-			setState(95);
+			setState(100);
+			expressao();
+			setState(101);
 			match(RPAREN);
-			setState(96);
+			setState(102);
 			match(SEMI);
 			}
 		}
@@ -840,11 +850,8 @@ public class JabaParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ExpressaoContext extends ParserRuleContext {
-		public TermoContext termo() {
-			return getRuleContext(TermoContext.class,0);
-		}
-		public ExpressaoContext expressao() {
-			return getRuleContext(ExpressaoContext.class,0);
+		public ExpressaoLogicaContext expressaoLogica() {
+			return getRuleContext(ExpressaoLogicaContext.class,0);
 		}
 		public ExpressaoContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -866,40 +873,256 @@ public class JabaParser extends Parser {
 	}
 
 	public final ExpressaoContext expressao() throws RecognitionException {
-		return expressao(0);
+		ExpressaoContext _localctx = new ExpressaoContext(_ctx, getState());
+		enterRule(_localctx, 20, RULE_expressao);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(104);
+			expressaoLogica();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
 	}
 
-	private ExpressaoContext expressao(int _p) throws RecognitionException {
+	@SuppressWarnings("CheckReturnValue")
+	public static class ExpressaoLogicaContext extends ParserRuleContext {
+		public List<ExpressaoRelacionalContext> expressaoRelacional() {
+			return getRuleContexts(ExpressaoRelacionalContext.class);
+		}
+		public ExpressaoRelacionalContext expressaoRelacional(int i) {
+			return getRuleContext(ExpressaoRelacionalContext.class,i);
+		}
+		public TerminalNode E_LOGICO() { return getToken(JabaParser.E_LOGICO, 0); }
+		public TerminalNode OU_LOGICO() { return getToken(JabaParser.OU_LOGICO, 0); }
+		public ExpressaoLogicaContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_expressaoLogica; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof JabaListener ) ((JabaListener)listener).enterExpressaoLogica(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof JabaListener ) ((JabaListener)listener).exitExpressaoLogica(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof JabaVisitor ) return ((JabaVisitor<? extends T>)visitor).visitExpressaoLogica(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final ExpressaoLogicaContext expressaoLogica() throws RecognitionException {
+		ExpressaoLogicaContext _localctx = new ExpressaoLogicaContext(_ctx, getState());
+		enterRule(_localctx, 22, RULE_expressaoLogica);
+		int _la;
+		try {
+			setState(115);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(106);
+				expressaoRelacional();
+				setState(107);
+				_la = _input.LA(1);
+				if ( !(_la==E_LOGICO || _la==OU_LOGICO) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
+				setState(111);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 319488L) != 0)) {
+					{
+					{
+					setState(108);
+					expressaoRelacional();
+					}
+					}
+					setState(113);
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				}
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(114);
+				expressaoRelacional();
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class ExpressaoRelacionalContext extends ParserRuleContext {
+		public List<ExpressaoAritmeticaContext> expressaoAritmetica() {
+			return getRuleContexts(ExpressaoAritmeticaContext.class);
+		}
+		public ExpressaoAritmeticaContext expressaoAritmetica(int i) {
+			return getRuleContext(ExpressaoAritmeticaContext.class,i);
+		}
+		public TerminalNode MAIOR() { return getToken(JabaParser.MAIOR, 0); }
+		public TerminalNode MENOR() { return getToken(JabaParser.MENOR, 0); }
+		public TerminalNode IGUAL() { return getToken(JabaParser.IGUAL, 0); }
+		public TerminalNode DIFERENTE() { return getToken(JabaParser.DIFERENTE, 0); }
+		public TerminalNode MAIORIGUAL() { return getToken(JabaParser.MAIORIGUAL, 0); }
+		public TerminalNode MENORIGUAL() { return getToken(JabaParser.MENORIGUAL, 0); }
+		public ExpressaoRelacionalContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_expressaoRelacional; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof JabaListener ) ((JabaListener)listener).enterExpressaoRelacional(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof JabaListener ) ((JabaListener)listener).exitExpressaoRelacional(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof JabaVisitor ) return ((JabaVisitor<? extends T>)visitor).visitExpressaoRelacional(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final ExpressaoRelacionalContext expressaoRelacional() throws RecognitionException {
+		ExpressaoRelacionalContext _localctx = new ExpressaoRelacionalContext(_ctx, getState());
+		enterRule(_localctx, 24, RULE_expressaoRelacional);
+		int _la;
+		try {
+			setState(122);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(117);
+				expressaoAritmetica(0);
+				setState(118);
+				_la = _input.LA(1);
+				if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 2113929216L) != 0)) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
+				setState(119);
+				expressaoAritmetica(0);
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(121);
+				expressaoAritmetica(0);
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class ExpressaoAritmeticaContext extends ParserRuleContext {
+		public TermoContext termo() {
+			return getRuleContext(TermoContext.class,0);
+		}
+		public ExpressaoAritmeticaContext expressaoAritmetica() {
+			return getRuleContext(ExpressaoAritmeticaContext.class,0);
+		}
+		public ExpressaoAritmeticaContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_expressaoAritmetica; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof JabaListener ) ((JabaListener)listener).enterExpressaoAritmetica(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof JabaListener ) ((JabaListener)listener).exitExpressaoAritmetica(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof JabaVisitor ) return ((JabaVisitor<? extends T>)visitor).visitExpressaoAritmetica(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final ExpressaoAritmeticaContext expressaoAritmetica() throws RecognitionException {
+		return expressaoAritmetica(0);
+	}
+
+	private ExpressaoAritmeticaContext expressaoAritmetica(int _p) throws RecognitionException {
 		ParserRuleContext _parentctx = _ctx;
 		int _parentState = getState();
-		ExpressaoContext _localctx = new ExpressaoContext(_ctx, _parentState);
-		ExpressaoContext _prevctx = _localctx;
-		int _startState = 20;
-		enterRecursionRule(_localctx, 20, RULE_expressao, _p);
+		ExpressaoAritmeticaContext _localctx = new ExpressaoAritmeticaContext(_ctx, _parentState);
+		ExpressaoAritmeticaContext _prevctx = _localctx;
+		int _startState = 26;
+		enterRecursionRule(_localctx, 26, RULE_expressaoAritmetica, _p);
 		int _la;
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(99);
+			setState(125);
 			termo(0);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(106);
+			setState(132);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,7,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,10,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
 					{
-					_localctx = new ExpressaoContext(_parentctx, _parentState);
-					pushNewRecursionContext(_localctx, _startState, RULE_expressao);
-					setState(101);
+					_localctx = new ExpressaoAritmeticaContext(_parentctx, _parentState);
+					pushNewRecursionContext(_localctx, _startState, RULE_expressaoAritmetica);
+					setState(127);
 					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-					setState(102);
+					setState(128);
 					_la = _input.LA(1);
 					if ( !(_la==T__0 || _la==T__1) ) {
 					_errHandler.recoverInline(this);
@@ -909,14 +1132,14 @@ public class JabaParser extends Parser {
 						_errHandler.reportMatch(this);
 						consume();
 					}
-					setState(103);
+					setState(129);
 					termo(0);
 					}
 					} 
 				}
-				setState(108);
+				setState(134);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,7,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,10,_ctx);
 			}
 			}
 		}
@@ -967,21 +1190,21 @@ public class JabaParser extends Parser {
 		int _parentState = getState();
 		TermoContext _localctx = new TermoContext(_ctx, _parentState);
 		TermoContext _prevctx = _localctx;
-		int _startState = 22;
-		enterRecursionRule(_localctx, 22, RULE_termo, _p);
+		int _startState = 28;
+		enterRecursionRule(_localctx, 28, RULE_termo, _p);
 		int _la;
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(110);
+			setState(136);
 			fator();
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(117);
+			setState(143);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,11,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -990,9 +1213,9 @@ public class JabaParser extends Parser {
 					{
 					_localctx = new TermoContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_termo);
-					setState(112);
+					setState(138);
 					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-					setState(113);
+					setState(139);
 					_la = _input.LA(1);
 					if ( !(_la==T__2 || _la==T__3) ) {
 					_errHandler.recoverInline(this);
@@ -1002,14 +1225,14 @@ public class JabaParser extends Parser {
 						_errHandler.reportMatch(this);
 						consume();
 					}
-					setState(114);
+					setState(140);
 					fator();
 					}
 					} 
 				}
-				setState(119);
+				setState(145);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,11,_ctx);
 			}
 			}
 		}
@@ -1055,40 +1278,40 @@ public class JabaParser extends Parser {
 
 	public final FatorContext fator() throws RecognitionException {
 		FatorContext _localctx = new FatorContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_fator);
+		enterRule(_localctx, 30, RULE_fator);
 		try {
-			setState(127);
+			setState(153);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case LPAREN:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(120);
+				setState(146);
 				match(LPAREN);
-				setState(121);
-				expressao(0);
-				setState(122);
+				setState(147);
+				expressao();
+				setState(148);
 				match(RPAREN);
 				}
 				break;
 			case NUMERO:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(124);
+				setState(150);
 				match(NUMERO);
 				}
 				break;
 			case BOOL_LITERAL:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(125);
+				setState(151);
 				match(BOOL_LITERAL);
 				}
 				break;
 			case ID:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(126);
+				setState(152);
 				match(ID);
 				}
 				break;
@@ -1109,14 +1332,14 @@ public class JabaParser extends Parser {
 
 	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 		switch (ruleIndex) {
-		case 10:
-			return expressao_sempred((ExpressaoContext)_localctx, predIndex);
-		case 11:
+		case 13:
+			return expressaoAritmetica_sempred((ExpressaoAritmeticaContext)_localctx, predIndex);
+		case 14:
 			return termo_sempred((TermoContext)_localctx, predIndex);
 		}
 		return true;
 	}
-	private boolean expressao_sempred(ExpressaoContext _localctx, int predIndex) {
+	private boolean expressaoAritmetica_sempred(ExpressaoAritmeticaContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
 			return precpred(_ctx, 2);
@@ -1132,78 +1355,96 @@ public class JabaParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u0018\u0082\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001"+
-		"\u0002\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004"+
-		"\u0002\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007"+
-		"\u0002\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b"+
-		"\u0002\f\u0007\f\u0001\u0000\u0001\u0000\u0005\u0000\u001d\b\u0000\n\u0000"+
-		"\f\u0000 \t\u0000\u0001\u0000\u0001\u0000\u0001\u0001\u0001\u0001\u0001"+
+		"\u0004\u0001 \u009c\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
+		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002"+
+		"\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b\u0002"+
+		"\f\u0007\f\u0002\r\u0007\r\u0002\u000e\u0007\u000e\u0002\u000f\u0007\u000f"+
+		"\u0001\u0000\u0001\u0000\u0005\u0000#\b\u0000\n\u0000\f\u0000&\t\u0000"+
+		"\u0001\u0000\u0001\u0000\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
 		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
-		"\u0001\u0001\u0001\u0003\u0001.\b\u0001\u0001\u0002\u0001\u0002\u0001"+
-		"\u0002\u0001\u0002\u0001\u0002\u0003\u00025\b\u0002\u0001\u0003\u0001"+
-		"\u0003\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001"+
-		"\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001"+
-		"\u0005\u0003\u0005E\b\u0005\u0001\u0006\u0001\u0006\u0001\u0006\u0001"+
-		"\u0006\u0001\u0006\u0001\u0006\u0001\u0007\u0001\u0007\u0001\u0007\u0005"+
-		"\u0007P\b\u0007\n\u0007\f\u0007S\t\u0007\u0001\u0007\u0001\u0007\u0001"+
-		"\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001\t\u0001\t\u0001\t\u0001"+
-		"\t\u0001\t\u0001\t\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0005"+
-		"\ni\b\n\n\n\f\nl\t\n\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b\u0001"+
-		"\u000b\u0001\u000b\u0005\u000bt\b\u000b\n\u000b\f\u000bw\t\u000b\u0001"+
-		"\f\u0001\f\u0001\f\u0001\f\u0001\f\u0001\f\u0001\f\u0003\f\u0080\b\f\u0001"+
-		"\f\u0000\u0002\u0014\u0016\r\u0000\u0002\u0004\u0006\b\n\f\u000e\u0010"+
-		"\u0012\u0014\u0016\u0018\u0000\u0003\u0001\u0000\u0005\u0007\u0001\u0000"+
-		"\u0001\u0002\u0001\u0000\u0003\u0004\u0083\u0000\u001e\u0001\u0000\u0000"+
-		"\u0000\u0002-\u0001\u0000\u0000\u0000\u00044\u0001\u0000\u0000\u0000\u0006"+
-		"6\u0001\u0000\u0000\u0000\b8\u0001\u0000\u0000\u0000\n=\u0001\u0000\u0000"+
-		"\u0000\fF\u0001\u0000\u0000\u0000\u000eL\u0001\u0000\u0000\u0000\u0010"+
-		"V\u0001\u0000\u0000\u0000\u0012\\\u0001\u0000\u0000\u0000\u0014b\u0001"+
-		"\u0000\u0000\u0000\u0016m\u0001\u0000\u0000\u0000\u0018\u007f\u0001\u0000"+
-		"\u0000\u0000\u001a\u001d\u0003\u0002\u0001\u0000\u001b\u001d\u0003\u0004"+
-		"\u0002\u0000\u001c\u001a\u0001\u0000\u0000\u0000\u001c\u001b\u0001\u0000"+
-		"\u0000\u0000\u001d \u0001\u0000\u0000\u0000\u001e\u001c\u0001\u0000\u0000"+
-		"\u0000\u001e\u001f\u0001\u0000\u0000\u0000\u001f!\u0001\u0000\u0000\u0000"+
-		" \u001e\u0001\u0000\u0000\u0000!\"\u0005\u0000\u0000\u0001\"\u0001\u0001"+
-		"\u0000\u0000\u0000#$\u0003\u0006\u0003\u0000$%\u0005\u000f\u0000\u0000"+
-		"%&\u0005\u0010\u0000\u0000&.\u0001\u0000\u0000\u0000\'(\u0003\u0006\u0003"+
-		"\u0000()\u0005\u000f\u0000\u0000)*\u0005\u0011\u0000\u0000*+\u0003\u0014"+
-		"\n\u0000+,\u0005\u0010\u0000\u0000,.\u0001\u0000\u0000\u0000-#\u0001\u0000"+
-		"\u0000\u0000-\'\u0001\u0000\u0000\u0000.\u0003\u0001\u0000\u0000\u0000"+
-		"/5\u0003\b\u0004\u000005\u0003\n\u0005\u000015\u0003\f\u0006\u000025\u0003"+
-		"\u0010\b\u000035\u0003\u0012\t\u00004/\u0001\u0000\u0000\u000040\u0001"+
-		"\u0000\u0000\u000041\u0001\u0000\u0000\u000042\u0001\u0000\u0000\u0000"+
-		"43\u0001\u0000\u0000\u00005\u0005\u0001\u0000\u0000\u000067\u0007\u0000"+
-		"\u0000\u00007\u0007\u0001\u0000\u0000\u000089\u0005\u000f\u0000\u0000"+
-		"9:\u0005\u0011\u0000\u0000:;\u0003\u0014\n\u0000;<\u0005\u0010\u0000\u0000"+
-		"<\t\u0001\u0000\u0000\u0000=>\u0005\b\u0000\u0000>?\u0005\u0012\u0000"+
-		"\u0000?@\u0003\u0014\n\u0000@A\u0005\u0013\u0000\u0000AD\u0003\u000e\u0007"+
-		"\u0000BC\u0005\t\u0000\u0000CE\u0003\u000e\u0007\u0000DB\u0001\u0000\u0000"+
-		"\u0000DE\u0001\u0000\u0000\u0000E\u000b\u0001\u0000\u0000\u0000FG\u0005"+
-		"\n\u0000\u0000GH\u0005\u0012\u0000\u0000HI\u0003\u0014\n\u0000IJ\u0005"+
-		"\u0013\u0000\u0000JK\u0003\u000e\u0007\u0000K\r\u0001\u0000\u0000\u0000"+
-		"LQ\u0005\u0014\u0000\u0000MP\u0003\u0002\u0001\u0000NP\u0003\u0004\u0002"+
-		"\u0000OM\u0001\u0000\u0000\u0000ON\u0001\u0000\u0000\u0000PS\u0001\u0000"+
-		"\u0000\u0000QO\u0001\u0000\u0000\u0000QR\u0001\u0000\u0000\u0000RT\u0001"+
-		"\u0000\u0000\u0000SQ\u0001\u0000\u0000\u0000TU\u0005\u0015\u0000\u0000"+
-		"U\u000f\u0001\u0000\u0000\u0000VW\u0005\u000b\u0000\u0000WX\u0005\u0012"+
-		"\u0000\u0000XY\u0005\u000f\u0000\u0000YZ\u0005\u0013\u0000\u0000Z[\u0005"+
-		"\u0010\u0000\u0000[\u0011\u0001\u0000\u0000\u0000\\]\u0005\f\u0000\u0000"+
-		"]^\u0005\u0012\u0000\u0000^_\u0003\u0014\n\u0000_`\u0005\u0013\u0000\u0000"+
-		"`a\u0005\u0010\u0000\u0000a\u0013\u0001\u0000\u0000\u0000bc\u0006\n\uffff"+
-		"\uffff\u0000cd\u0003\u0016\u000b\u0000dj\u0001\u0000\u0000\u0000ef\n\u0002"+
-		"\u0000\u0000fg\u0007\u0001\u0000\u0000gi\u0003\u0016\u000b\u0000he\u0001"+
-		"\u0000\u0000\u0000il\u0001\u0000\u0000\u0000jh\u0001\u0000\u0000\u0000"+
-		"jk\u0001\u0000\u0000\u0000k\u0015\u0001\u0000\u0000\u0000lj\u0001\u0000"+
-		"\u0000\u0000mn\u0006\u000b\uffff\uffff\u0000no\u0003\u0018\f\u0000ou\u0001"+
-		"\u0000\u0000\u0000pq\n\u0002\u0000\u0000qr\u0007\u0002\u0000\u0000rt\u0003"+
-		"\u0018\f\u0000sp\u0001\u0000\u0000\u0000tw\u0001\u0000\u0000\u0000us\u0001"+
-		"\u0000\u0000\u0000uv\u0001\u0000\u0000\u0000v\u0017\u0001\u0000\u0000"+
-		"\u0000wu\u0001\u0000\u0000\u0000xy\u0005\u0012\u0000\u0000yz\u0003\u0014"+
-		"\n\u0000z{\u0005\u0013\u0000\u0000{\u0080\u0001\u0000\u0000\u0000|\u0080"+
-		"\u0005\r\u0000\u0000}\u0080\u0005\u000e\u0000\u0000~\u0080\u0005\u000f"+
-		"\u0000\u0000\u007fx\u0001\u0000\u0000\u0000\u007f|\u0001\u0000\u0000\u0000"+
-		"\u007f}\u0001\u0000\u0000\u0000\u007f~\u0001\u0000\u0000\u0000\u0080\u0019"+
-		"\u0001\u0000\u0000\u0000\n\u001c\u001e-4DOQju\u007f";
+		"\u0003\u00014\b\u0001\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002"+
+		"\u0001\u0002\u0003\u0002;\b\u0002\u0001\u0003\u0001\u0003\u0001\u0004"+
+		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0005\u0001\u0005"+
+		"\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0003\u0005"+
+		"K\b\u0005\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006"+
+		"\u0001\u0006\u0001\u0007\u0001\u0007\u0001\u0007\u0005\u0007V\b\u0007"+
+		"\n\u0007\f\u0007Y\t\u0007\u0001\u0007\u0001\u0007\u0001\b\u0001\b\u0001"+
+		"\b\u0001\b\u0001\b\u0001\b\u0001\t\u0001\t\u0001\t\u0001\t\u0001\t\u0001"+
+		"\t\u0001\n\u0001\n\u0001\u000b\u0001\u000b\u0001\u000b\u0005\u000bn\b"+
+		"\u000b\n\u000b\f\u000bq\t\u000b\u0001\u000b\u0003\u000bt\b\u000b\u0001"+
+		"\f\u0001\f\u0001\f\u0001\f\u0001\f\u0003\f{\b\f\u0001\r\u0001\r\u0001"+
+		"\r\u0001\r\u0001\r\u0001\r\u0005\r\u0083\b\r\n\r\f\r\u0086\t\r\u0001\u000e"+
+		"\u0001\u000e\u0001\u000e\u0001\u000e\u0001\u000e\u0001\u000e\u0005\u000e"+
+		"\u008e\b\u000e\n\u000e\f\u000e\u0091\t\u000e\u0001\u000f\u0001\u000f\u0001"+
+		"\u000f\u0001\u000f\u0001\u000f\u0001\u000f\u0001\u000f\u0003\u000f\u009a"+
+		"\b\u000f\u0001\u000f\u0000\u0002\u001a\u001c\u0010\u0000\u0002\u0004\u0006"+
+		"\b\n\f\u000e\u0010\u0012\u0014\u0016\u0018\u001a\u001c\u001e\u0000\u0005"+
+		"\u0001\u0000\u0005\u0007\u0001\u0000\u001f \u0001\u0000\u0019\u001e\u0001"+
+		"\u0000\u0001\u0002\u0001\u0000\u0003\u0004\u009d\u0000$\u0001\u0000\u0000"+
+		"\u0000\u00023\u0001\u0000\u0000\u0000\u0004:\u0001\u0000\u0000\u0000\u0006"+
+		"<\u0001\u0000\u0000\u0000\b>\u0001\u0000\u0000\u0000\nC\u0001\u0000\u0000"+
+		"\u0000\fL\u0001\u0000\u0000\u0000\u000eR\u0001\u0000\u0000\u0000\u0010"+
+		"\\\u0001\u0000\u0000\u0000\u0012b\u0001\u0000\u0000\u0000\u0014h\u0001"+
+		"\u0000\u0000\u0000\u0016s\u0001\u0000\u0000\u0000\u0018z\u0001\u0000\u0000"+
+		"\u0000\u001a|\u0001\u0000\u0000\u0000\u001c\u0087\u0001\u0000\u0000\u0000"+
+		"\u001e\u0099\u0001\u0000\u0000\u0000 #\u0003\u0002\u0001\u0000!#\u0003"+
+		"\u0004\u0002\u0000\" \u0001\u0000\u0000\u0000\"!\u0001\u0000\u0000\u0000"+
+		"#&\u0001\u0000\u0000\u0000$\"\u0001\u0000\u0000\u0000$%\u0001\u0000\u0000"+
+		"\u0000%\'\u0001\u0000\u0000\u0000&$\u0001\u0000\u0000\u0000\'(\u0005\u0000"+
+		"\u0000\u0001(\u0001\u0001\u0000\u0000\u0000)*\u0003\u0006\u0003\u0000"+
+		"*+\u0005\u000f\u0000\u0000+,\u0005\u0010\u0000\u0000,4\u0001\u0000\u0000"+
+		"\u0000-.\u0003\u0006\u0003\u0000./\u0005\u000f\u0000\u0000/0\u0005\u0011"+
+		"\u0000\u000001\u0003\u0014\n\u000012\u0005\u0010\u0000\u000024\u0001\u0000"+
+		"\u0000\u00003)\u0001\u0000\u0000\u00003-\u0001\u0000\u0000\u00004\u0003"+
+		"\u0001\u0000\u0000\u00005;\u0003\b\u0004\u00006;\u0003\n\u0005\u00007"+
+		";\u0003\f\u0006\u00008;\u0003\u0010\b\u00009;\u0003\u0012\t\u0000:5\u0001"+
+		"\u0000\u0000\u0000:6\u0001\u0000\u0000\u0000:7\u0001\u0000\u0000\u0000"+
+		":8\u0001\u0000\u0000\u0000:9\u0001\u0000\u0000\u0000;\u0005\u0001\u0000"+
+		"\u0000\u0000<=\u0007\u0000\u0000\u0000=\u0007\u0001\u0000\u0000\u0000"+
+		">?\u0005\u000f\u0000\u0000?@\u0005\u0011\u0000\u0000@A\u0003\u0014\n\u0000"+
+		"AB\u0005\u0010\u0000\u0000B\t\u0001\u0000\u0000\u0000CD\u0005\b\u0000"+
+		"\u0000DE\u0005\u0012\u0000\u0000EF\u0003\u0014\n\u0000FG\u0005\u0013\u0000"+
+		"\u0000GJ\u0003\u000e\u0007\u0000HI\u0005\t\u0000\u0000IK\u0003\u000e\u0007"+
+		"\u0000JH\u0001\u0000\u0000\u0000JK\u0001\u0000\u0000\u0000K\u000b\u0001"+
+		"\u0000\u0000\u0000LM\u0005\n\u0000\u0000MN\u0005\u0012\u0000\u0000NO\u0003"+
+		"\u0014\n\u0000OP\u0005\u0013\u0000\u0000PQ\u0003\u000e\u0007\u0000Q\r"+
+		"\u0001\u0000\u0000\u0000RW\u0005\u0014\u0000\u0000SV\u0003\u0002\u0001"+
+		"\u0000TV\u0003\u0004\u0002\u0000US\u0001\u0000\u0000\u0000UT\u0001\u0000"+
+		"\u0000\u0000VY\u0001\u0000\u0000\u0000WU\u0001\u0000\u0000\u0000WX\u0001"+
+		"\u0000\u0000\u0000XZ\u0001\u0000\u0000\u0000YW\u0001\u0000\u0000\u0000"+
+		"Z[\u0005\u0015\u0000\u0000[\u000f\u0001\u0000\u0000\u0000\\]\u0005\u000b"+
+		"\u0000\u0000]^\u0005\u0012\u0000\u0000^_\u0005\u000f\u0000\u0000_`\u0005"+
+		"\u0013\u0000\u0000`a\u0005\u0010\u0000\u0000a\u0011\u0001\u0000\u0000"+
+		"\u0000bc\u0005\f\u0000\u0000cd\u0005\u0012\u0000\u0000de\u0003\u0014\n"+
+		"\u0000ef\u0005\u0013\u0000\u0000fg\u0005\u0010\u0000\u0000g\u0013\u0001"+
+		"\u0000\u0000\u0000hi\u0003\u0016\u000b\u0000i\u0015\u0001\u0000\u0000"+
+		"\u0000jk\u0003\u0018\f\u0000ko\u0007\u0001\u0000\u0000ln\u0003\u0018\f"+
+		"\u0000ml\u0001\u0000\u0000\u0000nq\u0001\u0000\u0000\u0000om\u0001\u0000"+
+		"\u0000\u0000op\u0001\u0000\u0000\u0000pt\u0001\u0000\u0000\u0000qo\u0001"+
+		"\u0000\u0000\u0000rt\u0003\u0018\f\u0000sj\u0001\u0000\u0000\u0000sr\u0001"+
+		"\u0000\u0000\u0000t\u0017\u0001\u0000\u0000\u0000uv\u0003\u001a\r\u0000"+
+		"vw\u0007\u0002\u0000\u0000wx\u0003\u001a\r\u0000x{\u0001\u0000\u0000\u0000"+
+		"y{\u0003\u001a\r\u0000zu\u0001\u0000\u0000\u0000zy\u0001\u0000\u0000\u0000"+
+		"{\u0019\u0001\u0000\u0000\u0000|}\u0006\r\uffff\uffff\u0000}~\u0003\u001c"+
+		"\u000e\u0000~\u0084\u0001\u0000\u0000\u0000\u007f\u0080\n\u0002\u0000"+
+		"\u0000\u0080\u0081\u0007\u0003\u0000\u0000\u0081\u0083\u0003\u001c\u000e"+
+		"\u0000\u0082\u007f\u0001\u0000\u0000\u0000\u0083\u0086\u0001\u0000\u0000"+
+		"\u0000\u0084\u0082\u0001\u0000\u0000\u0000\u0084\u0085\u0001\u0000\u0000"+
+		"\u0000\u0085\u001b\u0001\u0000\u0000\u0000\u0086\u0084\u0001\u0000\u0000"+
+		"\u0000\u0087\u0088\u0006\u000e\uffff\uffff\u0000\u0088\u0089\u0003\u001e"+
+		"\u000f\u0000\u0089\u008f\u0001\u0000\u0000\u0000\u008a\u008b\n\u0002\u0000"+
+		"\u0000\u008b\u008c\u0007\u0004\u0000\u0000\u008c\u008e\u0003\u001e\u000f"+
+		"\u0000\u008d\u008a\u0001\u0000\u0000\u0000\u008e\u0091\u0001\u0000\u0000"+
+		"\u0000\u008f\u008d\u0001\u0000\u0000\u0000\u008f\u0090\u0001\u0000\u0000"+
+		"\u0000\u0090\u001d\u0001\u0000\u0000\u0000\u0091\u008f\u0001\u0000\u0000"+
+		"\u0000\u0092\u0093\u0005\u0012\u0000\u0000\u0093\u0094\u0003\u0014\n\u0000"+
+		"\u0094\u0095\u0005\u0013\u0000\u0000\u0095\u009a\u0001\u0000\u0000\u0000"+
+		"\u0096\u009a\u0005\r\u0000\u0000\u0097\u009a\u0005\u000e\u0000\u0000\u0098"+
+		"\u009a\u0005\u000f\u0000\u0000\u0099\u0092\u0001\u0000\u0000\u0000\u0099"+
+		"\u0096\u0001\u0000\u0000\u0000\u0099\u0097\u0001\u0000\u0000\u0000\u0099"+
+		"\u0098\u0001\u0000\u0000\u0000\u009a\u001f\u0001\u0000\u0000\u0000\r\""+
+		"$3:JUWosz\u0084\u008f\u0099";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
