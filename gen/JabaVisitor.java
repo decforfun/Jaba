@@ -84,6 +84,24 @@ public interface JabaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpressao(JabaParser.ExpressaoContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link JabaParser#expressaoLogica}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressaoLogica(JabaParser.ExpressaoLogicaContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JabaParser#expressaoRelacional}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressaoRelacional(JabaParser.ExpressaoRelacionalContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JabaParser#expressaoAritmetica}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressaoAritmetica(JabaParser.ExpressaoAritmeticaContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link JabaParser#termo}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
