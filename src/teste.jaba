@@ -1,0 +1,5 @@
+inteiro x;
+
+leia(x);
+
+escreva(x);
