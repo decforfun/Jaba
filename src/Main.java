@@ -13,23 +13,24 @@ public class Main {
     private static final String LEXER_CLASS = "JabaLexer";
     private static final String PARSER_CLASS = "JabaParser";
 
+    // Ordem em que tentaremos detectar a regra inicial
     private static final String[] ROOT_CANDIDATES = {
             "programa", "program", "prog", "start", "file"
     };
 
-    // separador entre testes no arquivo
+    // separador entre blocos de teste
     private static final String DELIMITER = "---";
 
     public static void main(String[] args) throws Exception {
+
         if (args.length == 0) {
             System.err.println("Uso: java Main <arquivo.jaba>");
             System.exit(1);
         }
 
-        // lê conteúdo inteiro
         String content = Files.readString(Path.of(args[0]));
 
-        // separa os blocos pelo delimitador
+        // separa em blocos
         String[] testes = content.split("(?m)^\\s*" + DELIMITER + "\\s*$");
 
         System.out.println("✔ Total de testes encontrados: " + testes.length);
@@ -52,11 +53,12 @@ public class Main {
         }
     }
 
+
     private static void processarTrecho(String codigo, int index) throws Exception {
 
         CharStream input = CharStreams.fromString(codigo);
 
-        // Instancia o Lexer
+        // Instancia o Lexer dinamicamente
         Class<?> lexerClass = Class.forName(LEXER_CLASS);
         Lexer lexer = (Lexer) lexerClass
                 .getConstructor(CharStream.class)
@@ -64,16 +66,16 @@ public class Main {
 
         CommonTokenStream tokens = new CommonTokenStream(lexer);
 
-        // Instancia o Parser
+        // Instancia o Parser dinamicamente
         Class<?> parserClass = Class.forName(PARSER_CLASS);
         Parser parser = (Parser) parserClass
                 .getConstructor(TokenStream.class)
                 .newInstance(tokens);
 
-        try { parser.removeErrorListeners(); } catch (Exception ignored) {}
+        parser.removeErrorListeners();
         parser.addErrorListener(new DiagnosticErrorListener());
 
-        // tenta encontrar uma regra inicial automaticamente
+        // detectar automaticamente a regra inicial
         ParseTree tree = null;
         Method usada = null;
 
@@ -94,33 +96,40 @@ public class Main {
             return;
         }
 
-        // imprime qual regra foi detectada
-        System.out.println("Regra raiz: " + usada.getName());
-
-        // imprime árvore textual (pode deixar só para debug)
+        System.out.println("Regra raiz detectada: " + usada.getName());
         System.out.println("Árvore sintática (texto):");
         System.out.println(Trees.toStringTree(tree, parser));
 
-        // ================================
-        // VISUALIZAÇÃO GRÁFICA DO ANTLR
-        // ================================
+        // =================================
+        // EXECUÇÃO DO PROGRAMA / EXPRESSÃO
+        // =================================
+
+        EvalVisitor evaluator = new EvalVisitor();
+        Object resultado = evaluator.visit(tree);
+
+        if (resultado != null) {
+            System.out.println("👉 Resultado: " + resultado);
+        }
+
+        // =================================
+        // VISUALIZADOR GRÁFICO DO ANTLR
+        // =================================
 
         TreeViewer viewer = new TreeViewer(
                 Arrays.asList(parser.getRuleNames()),
                 tree
         );
 
-        viewer.setScale(1.4); // zoom
+        viewer.setScale(1.4);
 
         JFrame frame = new JFrame("Árvore Sintática - Teste " + index);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        // scroll + viewer
         JScrollPane scroll = new JScrollPane(viewer);
         frame.add(scroll);
 
         frame.setSize(900, 700);
-        frame.setLocationRelativeTo(null); // centraliza
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 }

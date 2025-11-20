@@ -16,6 +16,7 @@ comando
     | repeticao
     | entrada
     | saida
+    | expressao
     ;
 
 tipo
