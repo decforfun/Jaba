@@ -3,8 +3,7 @@ Projeto da disciplina de Compiladores usando **Java** e **ANTLR 4**.
 
 ## Sobre
 Compilador simples (trabalho "a3") que usa uma gramática em ANTLR para gerar lexer e parser e executar a análise da linguagem Jaba.
-Para ler o nosso artigo de documentação do projeto, acesse o link abaixo
-https://drive.google.com/file/d/1kxQ8grKlWRTYiwY2eLDroY5cZ_X_fckH/view?usp=sharing
+Para ler o nosso artigo de documentação do projeto, acesse o link a seguir https://drive.google.com/file/d/1kxQ8grKlWRTYiwY2eLDroY5cZ_X_fckH/view?usp=sharing
 
 ## Tecnologias
 - Java  
